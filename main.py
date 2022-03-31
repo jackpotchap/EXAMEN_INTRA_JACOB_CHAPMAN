@@ -7,6 +7,7 @@
 ###  Description du fichier: Programme principal
 ####################################################################################
 
+#source commentaire Ex1_InterfaceGraphique
 
 #######################################
 ###  IMPORTATIONS - Portée globale  ###
