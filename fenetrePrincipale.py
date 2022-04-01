@@ -12,8 +12,24 @@ from PyQt5.QtCore import pyqtSlot
 
 import fenetrelistview
 from interface_UI import interface_principal
-from main import cacher_labels_erreur
 
+def cacher_labels_erreur(objet):
+    """
+    Cacher les différents labels d'erreur
+    """
+    objet.label_erreure_troplong_nom.setVisible(False)
+    objet.label_erreure_lettreonly_nom.setVisible(False)
+    objet.label_erreure_chiffreonly_num.setVisible(False)
+    objet.label_erreure_taille_num.setVisible(False)
+    objet.label_erreure_lettreonly_prenom.setVisible(False)
+
+    objet.label_erreure_troplong_prenom.setVisible(False)
+    objet.label_erreure_pasnee_date.setVisible(False)
+    objet.label_erreure_chiffreonly_nbvisite.setVisible(False)
+    objet.label_erreure_positif_nbvisite.setVisible(False)
+    objet.label_erreure_introuvable_ouvrire.setVisible(False)
+
+    objet.label_erreure_generic_ouvrire.setVisible(False)
 
 ########################################################
 ###### DÉFINITIONS DE LA CLASSE fenetre principale ######

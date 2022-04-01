@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>422</width>
-    <height>753</height>
+    <width>802</width>
+    <height>621</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QLineEdit" name="lineEdit_age_min">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>40</y>
+     <x>410</x>
+     <y>110</y>
      <width>131</width>
      <height>31</height>
     </rect>
@@ -34,10 +34,10 @@
   <widget class="QLabel" name="label_titre_age_min">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>371</width>
-     <height>21</height>
+     <x>410</x>
+     <y>80</y>
+     <width>141</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -52,10 +52,10 @@
   <widget class="QLabel" name="label_titre_age_max">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>10</y>
+     <x>410</x>
+     <y>180</y>
      <width>371</width>
-     <height>21</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -70,8 +70,8 @@
   <widget class="QLineEdit" name="lineEdit_age_max">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>40</y>
+     <x>410</x>
+     <y>210</y>
      <width>131</width>
      <height>31</height>
     </rect>
@@ -88,8 +88,8 @@
   <widget class="QPushButton" name="pushButton_age_rechercher">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>20</y>
+     <x>420</x>
+     <y>400</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -107,7 +107,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>100</y>
+     <y>20</y>
      <width>351</width>
      <height>541</height>
     </rect>
@@ -116,10 +116,10 @@
   <widget class="QPushButton" name="pushButton_hide_list_avance">
    <property name="geometry">
     <rect>
-     <x>280</x>
-     <y>680</y>
-     <width>121</width>
-     <height>31</height>
+     <x>410</x>
+     <y>470</y>
+     <width>141</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -129,6 +129,150 @@
    </property>
    <property name="text">
     <string>fermer</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_titre_prix">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>280</y>
+     <width>371</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Prix</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_prix">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>310</y>
+     <width>131</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_erreure_taille_age_min">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>140</y>
+     <width>331</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;* l'age doit etre supérieure a 0.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_erreure_chiffreonly_num_age_min">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>160</y>
+     <width>371</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;* l'age doit etre un nombre entier.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_erreure_positif">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>340</y>
+     <width>331</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;* Le numéro dois etre positif.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_erreure_chiffreonly_num_prix">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>360</y>
+     <width>371</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;* Le numéro dois contenir uniquement des caratères numérique.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_erreure_taille_num_age_max">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>240</y>
+     <width>331</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;* l'age doit etre supérieure a 0.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_erreure_chiffreonly_num_age_max">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>260</y>
+     <width>371</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;* l'age doit etre un nombre entier.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
  </widget>
