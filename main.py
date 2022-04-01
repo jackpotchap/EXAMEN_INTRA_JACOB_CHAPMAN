@@ -36,6 +36,7 @@ from interface_UI import interface_principal
 ##########################################################
 
 #initialisation de la list de patient
+
 ls_patients = []
 
 #######################################

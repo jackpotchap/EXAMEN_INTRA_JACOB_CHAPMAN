@@ -22,9 +22,7 @@ def cacher_labels_erreur(objet):
     Cacher les différents labels d'erreur
     """
     objet.erreure_savwrong.setVisible(False)
-
-
-
+    objet.label_titre_reussite.setVisible(False)
     objet.label_erreure_generic_ouvrire.setVisible(False)
 
 class Fenetreconfirmation(QtWidgets.QDialog, save_pop_up_interface.Ui_Dialog):
@@ -33,6 +31,7 @@ class Fenetreconfirmation(QtWidgets.QDialog, save_pop_up_interface.Ui_Dialog):
         self.setupUi(self)
         self.setWindowTitle("Liste des étudiant.e.s")
 
+        cacher_labels_erreur(self)
     @pyqtSlot()
     def on_pushButton_hide_list_avance_clicked(self):
         self.close()

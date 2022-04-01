@@ -104,7 +104,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;* Le numéro dois contenir uniquement des caratères numérique.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_titre_nom_2">
+   <widget class="QLabel" name="label_titre_num">
     <property name="geometry">
      <rect>
       <x>20</x>

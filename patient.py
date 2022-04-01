@@ -25,7 +25,7 @@ class Patient:
     #####  MÉTHODE CONSTRUCTEUR  #####
     ###################################
 
-    def __init__(self, p_no_patient : str = "", p_nom : str = "", p_prenom:str = "", p_date_naiss:datetime.date = "", p_nb_visite :  int = 0 , p_commentaire : str = ""):
+    def __init__(self, p_no_patient : str = "", p_nom : str = "", p_prenom:str = "", p_date_naiss:datetime.date = datetime.date(1, 1, 1), p_nb_visite :  int = -1, p_commentaire : str = ""):
         """
         Constructeur avec paramètres et valeurs par défaut. Définition des attributs publics d'un étudiant
         :param p_no_patient: le numéro du patient
@@ -138,13 +138,15 @@ class Patient:
 
     # Propriété de date_naiss
 
-    def _get_date_naiss(self)->datetime.date:
+    def _get_date_naiss(self) -> datetime.date:
         return self.__date_naiss
 
     def _set_date_naiss(self, p_date_naiss:datetime.date):
 
+        print("calcule age avant ")
         age = self.calculer_age(p_date_naiss)
-
+        print("calcule age apres ")
+        print(p_date_naiss)
         if age > 0:
             self.__date_naiss = p_date_naiss
 
@@ -174,35 +176,7 @@ class Patient:
     Couriel = property(_get_couriel, )
 
 
-def turn_str_to_date(p_date: str) -> datetime.date:
-    """
-    transformer une chaine de caracetre en type datetime.date
-    si jamais le format est incorect il renveras la date de aujourd'hui
-    :param p_date: la date de type str qui seras transformer
-    :return: la dans en type datetime.date
-    """
 
-    # comme il sajit d'une function de plus je me suis selement permis de faire une gestion erreure pour le format
-    try:
-        date = p_date.split("-")
 
-        year = int(date[0])
-        month = int(date[1])
-        day = int(date[2])
 
-        return datetime.date(year, month, day)
-    except:
-        print("desoler le format est incorrect")
-        return datetime.date.today()
-
-e = Patient()
-
-e.Nom = "Chapman"
-e.Prenom = "Jacob"
-e.Date_naiss = turn_str_to_date("2005-06-09")
-e.Nb_visite = 3
-e.NoPatient = "2030490"
-e.Commentaire = "ié bouet"
-
-print(e)
 

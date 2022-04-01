@@ -21,25 +21,24 @@ def cacher_labels_erreur(objet):
     """
     Cacher les différents labels d'erreur
     """
-    objet.label_erreure_troplong_nom.setVisible(False)
-    objet.label_erreure_lettreonly_nom.setVisible(False)
-    objet.label_erreure_chiffreonly_num.setVisible(False)
-    objet.label_erreure_taille_num.setVisible(False)
-    objet.label_erreure_lettreonly_prenom.setVisible(False)
+    objet.label_erreure_taille_age_min.setVisible(False)
+    objet.label_erreure_chiffreonly_num_age_min.setVisible(False)
+    objet.label_erreure_chiffreonly_num_age_max.setVisible(False)
+    objet.label_erreure_positif.setVisible(False)
+    objet.label_erreure_chiffreonly_num_prix.setVisible(False)
+    objet.label_erreure_taille_num_age_max.setVisible(False)
 
-    objet.label_erreure_troplong_prenom.setVisible(False)
-    objet.label_erreure_pasnee_date.setVisible(False)
-    objet.label_erreure_chiffreonly_nbvisite.setVisible(False)
-    objet.label_erreure_positif_nbvisite.setVisible(False)
-    objet.label_erreure_introuvable_ouvrire.setVisible(False)
 
-    objet.label_erreure_generic_ouvrire.setVisible(False)
+
+
+
 
 class Fenetrelistview(QtWidgets.QDialog, list_avance_pop_up_interface.Ui_Dialog):
     def __init__(self, parent=None):
         super(Fenetrelistview, self).__init__(parent)
         self.setupUi(self)
         self.setWindowTitle("Liste des étudiant.e.s")
+        cacher_labels_erreur(self)
 
     @pyqtSlot()
     def on_pushButton_hide_list_avance_clicked(self):
