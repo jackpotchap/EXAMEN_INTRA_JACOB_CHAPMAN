@@ -37,6 +37,25 @@ def turn_str_to_date(p_date: str) -> datetime.date:
         print("desoler le format est incorrect")
         return datetime.date.today()
 
+def refresh_text_broswer(object):
+    output = ""
+    for p in ls_patients:
+        print(p)
+        output += p.__str__()
+        output += "\n"
+    object.textBrowser_affichage_patients.setText(output)
+
+def clear_input(object):
+    print("object.textEdit_commentaire.setPlainText")
+    object.lineEdit_nom.setText("")
+    object.lineEdit_prenom.setText("")
+    object.lineEdit_num.setText("")
+    object.lineEdit_nbvisite.setText("")
+    print("object.textEdit_commentaire.setPlainText")
+    object.textEdit_commentaire.setPlainText("")
+
+    object.dateEdit_naissance_patient.clear()
+
 def cacher_labels_erreur(objet):
     """
     Cacher les différents labels d'erreur
@@ -82,11 +101,6 @@ class FenetrePrincipale(QtWidgets.QMainWindow, interface_principal.Ui_MainWindow
         # Cacher tous les labels d'erreur
         cacher_labels_erreur(self)
 
-    def clear_input(object):
-        object.lineEdit_nom.setText("")
-        object.lineEdit_prenom.setText("")
-        object.lineEdit_num.setText("")
-        object.textEdit_commentaire.setPlainText("")
 
 
     #le bouton pour afficher la fentrelistview
@@ -109,9 +123,10 @@ class FenetrePrincipale(QtWidgets.QMainWindow, interface_principal.Ui_MainWindow
         """
 
         cacher_labels_erreur(self)
-        print("patient.Patient")
-        nouv_patient = patient.Patient(p_commentaire=self.textEdit_commentaire.PlainText())
+        print()
 
+        nouv_patient = patient.Patient(p_commentaire=self.textEdit_commentaire.toPlainText())
+        print("allo2")
         is_valide = True
         #verification pour le num
 
@@ -181,9 +196,15 @@ class FenetrePrincipale(QtWidgets.QMainWindow, interface_principal.Ui_MainWindow
                 self.label_erreure_positif_nbvisite.setVisible(True)
 
 
-
+        print("allo")
         if is_valide == True:
+
             ls_patients.append(nouv_patient)
+            print("allo")
+            clear_input(self)
+            print("clear input")
+            refresh_text_broswer(self)
+
 
 
 

@@ -223,6 +223,7 @@ class Ui_MainWindow(object):
         self.label_titre_affichage_patients.setText(_translate("MainWindow", "List de patients :"))
         self.pushButton_sauvegarder.setText(_translate("MainWindow", "Sauvegarder"))
         self.pushButton_ouvrir.setText(_translate("MainWindow", "Ouvrir"))
+
         self.pushButton_afficherlist.setText(_translate("MainWindow", "list avancé"))
         self.label_erreure_introuvable_ouvrire.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#ff0000;\">* Patient introuvable!</span></p></body></html>"))
         self.label_erreure_generic_ouvrire.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#ff0000;\">* Erreure lors de l\'ouverture du fichier.</span></p></body></html>"))

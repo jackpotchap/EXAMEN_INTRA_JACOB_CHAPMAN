@@ -35,7 +35,7 @@ class Patient:
         :param p_nb_visite: le nombres de visites du patient
         :param commentaire: commentaire sur le patient
         """
-
+        print("allo")
         self.__no_patient = p_no_patient
         self.__nom = p_nom
         self.__prenom= p_prenom
@@ -53,15 +53,15 @@ class Patient:
         output = ""
         output += "****************************************************\n"
         output += "\n"
-        output += f"le numéro du patient: {self.__no_patient}\n"
-        output += f"le nom du patient: {self.__nom}\n"
-        output += f"le prenom du patient: {self.__prenom}\n"
+        output += f"le numéro du patient: {self.NoPatient}\n"
+        output += f"le nom du patient: {self.Nom}\n"
+        output += f"le prenom du patient: {self.Prenom}\n"
         #j'utilise un int pour pas que on voit les decimale de l'age,
         # qui sont nessesaire pour verifier dans la fonction set age si l'age est supérieur a 0
 
-        output += f"l'age' du patient: {int(self.calculer_age(self.__date_naiss))}\n"
+        output += f"l'age' du patient: {int(self.calculer_age(self.Date_naiss))}\n"
         output += "\n"
-        output += f"le nombre de visite du patient: {str(self.__nb_visite)}\n"
+        output += f"le nombre de visite du patient: {str(self.Nb_visite)}\n"
         output += "\n"
         output += f"le courielle du patient: {self.Couriel}\n"
         output += "\n"
