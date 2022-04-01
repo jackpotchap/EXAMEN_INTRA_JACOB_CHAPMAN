@@ -41,16 +41,36 @@ class Patient:
         self.__prenom= p_prenom
         self.__date_naiss = p_date_naiss
         self.__nb_visite = p_nb_visite
-        self.__couriel = ""
+
         self.Commentaire = p_commentaire
 
     #######################################
     ###### DÉFINITIONS DES MÉTHODES ######
     #######################################
 
+    def __str__(self):
+        output = ""
+        output += "****************************************************\n"
+        output += "\n"
+        output += f"le numéro du patient: {self.__no_patient}\n"
+        output += f"le nom du patient: {self.__nom}\n"
+        output += f"l'age' du patient: {self.calculer_age()}\n"
+        output += "\n"
+        output += f"le nombre de visite du patient: {self.__nb_visite}\n"
+        output += "\n"
+        output += f"le courielle du patient: {self.Couriel}\n"
+        output += "\n"
+        output += "\n"
+        output += f"Commentaire: {self.Commentaire}\n"
+        output += "\n"
+        output += "****************************************************\n"
+        output += "\n"
+        output += "\n"
+
+        return output
 
 
-
+    def
     # Propriété de no_patient
     def _get_no_patient(self):
         return self.__no_patient
@@ -107,8 +127,24 @@ class Patient:
 
     Date_naiss = property(_get_date_naiss, _set_date_naiss)
 
+    # Propriété de nb_visite
+
+    def _get_nb_visite(self):
+        return self.__nb_visite
+
+    def _set_nb_visite(self, p_nb_visite: int):
+
+        # doit etre positif
+        if p_nb_visite >= 0:
+            self.__nb_visite = p_nb_visite
+
+
+
+    Nb_visite = property(_get_nb_visite, _set_nb_visite)
+
     # Propriété de couriel
     def _get_couriel(self):
         return f"{self.__nom}_{self.__prenom}@CabinetMedical.ca"
 
     Couriel = property(_get_couriel, )
+
