@@ -69,8 +69,15 @@ class Patient:
 
         return output
 
+    def calculer_age(self):
+        self.__date_naiss
 
-    def
+    #######################################
+    ###### DÉFINITIONS DES PROPRIÉTÉS ######
+    #######################################
+
+
+
     # Propriété de no_patient
     def _get_no_patient(self):
         return self.__no_patient
