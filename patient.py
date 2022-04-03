@@ -75,18 +75,20 @@ class Patient:
         return output
 
     def calculer_age(self, p_date_naiss: datetime.date) -> float:
+        print(p_date_naiss)
+        print(datetime.date.today())
         nb_jour = (datetime.date.today()- p_date_naiss).days
-
+        print("nb_jour = (datetime.date.today()- p_date_naiss).days")
         #il y a 365 jour et 1 de plus a chaque 4 ans donc on divise le total de jour par 365.25
 
         nb_annee = nb_jour/365.25
-
+        print("nb_annee = nb_jour/365.25")
         return nb_annee
 
     def calculer_cout_total(self, cout:float) -> float:
         return self.__nb_visite*cout
 
-
+    def
     #######################################
     ###### DÉFINITIONS DES PROPRIÉTÉS #####
     #######################################

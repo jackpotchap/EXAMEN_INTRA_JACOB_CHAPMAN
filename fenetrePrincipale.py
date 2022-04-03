@@ -8,8 +8,11 @@
 ####################################################################################
 
 from PyQt5 import QtWidgets
-from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtCore import pyqtSlot, QDate
 import datetime
+
+from PyQt5.uic.properties import QtCore
+
 import fenetrelistview
 import patient
 from interface_UI import interface_principal
@@ -54,7 +57,7 @@ def clear_input(object):
     print("object.textEdit_commentaire.setPlainText")
     object.textEdit_commentaire.setPlainText("")
 
-    object.dateEdit_naissance_patient.clear()
+    object.dateEdit_naissance_patient.setSpecialValueText("2000-01-01")
 
 def cacher_labels_erreur(objet):
     """
@@ -99,6 +102,7 @@ class FenetrePrincipale(QtWidgets.QMainWindow, interface_principal.Ui_MainWindow
         # Donner un titre à la fenêtre principale
         self.setWindowTitle("Gestion de patient")
         # Cacher tous les labels d'erreur
+        clear_input(self)
         cacher_labels_erreur(self)
 
 
@@ -206,6 +210,9 @@ class FenetrePrincipale(QtWidgets.QMainWindow, interface_principal.Ui_MainWindow
             refresh_text_broswer(self)
 
 
+    @pyqtSlot()
+    def on_pushButton_sauvegarder_clicked(self):
+        print("allo")
 
 
 
