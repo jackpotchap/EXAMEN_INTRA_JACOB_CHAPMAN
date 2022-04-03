@@ -88,7 +88,13 @@ class Patient:
     def calculer_cout_total(self, cout:float) -> float:
         return self.__nb_visite*cout
 
-    def
+    def Sauvegarder(self):
+        """
+        Méthode permettant de sérialiser un objet de la classe Etudiant
+
+        """
+        with open(f"Fichiers_JSON/{ }", "w") as fichier:
+            json.dump(self.__dict__, fichier)
     #######################################
     ###### DÉFINITIONS DES PROPRIÉTÉS #####
     #######################################
