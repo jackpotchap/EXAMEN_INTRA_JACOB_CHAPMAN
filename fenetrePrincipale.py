@@ -14,31 +14,11 @@ import datetime
 from PyQt5.uic.properties import QtCore
 
 import fenetrelistview
+import pythonconfirmation
 import patient
 from interface_UI import interface_principal
-from main import ls_patients
+from main import ls_patients, turn_str_to_date
 
-def turn_str_to_date(p_date: str) -> datetime.date:
-    """
-    transformer une chaine de caracetre en type datetime.date
-    si jamais le format est incorect il renveras la date de aujourd'hui
-    :param p_date: la date de type str qui seras transformer
-    :return: la dans en type datetime.date
-    """
-
-    # comme il sajit d'une function de plus je me suis selement permis de faire une gestion erreure pour le format
-    try:
-
-        date = p_date.split("-")
-
-        year = int(date[0])
-        month = int(date[1])
-        day = int(date[2])
-
-        return datetime.date(year, month, day)
-    except:
-        print("desoler le format est incorrect")
-        return datetime.date.today()
 
 def refresh_text_broswer(object):
     output = ""
@@ -214,7 +194,44 @@ class FenetrePrincipale(QtWidgets.QMainWindow, interface_principal.Ui_MainWindow
 
     @pyqtSlot()
     def on_pushButton_sauvegarder_clicked(self):
-        print("allo")
+        #je fait le meme protocole pour vérifier si le num est valide nouv_patient = patient.Patient(p_commentaire=self.textEdit_commentaire.toPlainText())
+        cacher_labels_erreur(self)
+        nouv_patient = patient.Patient()
 
+
+        is_valide = True
+        #verification pour le num
+
+
+        num = self.lineEdit_num.text()
+
+        try:
+            int(num)
+        except:
+            self.label_erreure_chiffreonly_num.setVisible(True)
+            is_valide = False
+
+        else:
+            nouv_patient.NoPatient = num
+            if nouv_patient.NoPatient == "":
+                is_valide = False
+                self.label_erreure_taille_num.setVisible(True)
+
+
+        if is_valide:
+            is_valide = False
+            # je tente desormais de vérifier si le numeros est dans la liste
+            for p in ls_patients:
+                if p.NoPatient == num:
+                    p.Sauvegarder()
+                    is_valide = True
+
+        pop_up = pythonconfirmation.Fenetreconfirmation()
+        if is_valide:
+            pop_up.label_titre_reussite.setVisible(True)
+        else:
+            pop_up.label_erreure_savwrong.setVisible(True)
+        pop_up.show()
+        pop_up.exec_()
 
 

@@ -14,6 +14,7 @@ import json
 
 #pour calculer l'age
 import datetime
+from main import turn_str_to_date
 
 class Patient:
     """
@@ -59,7 +60,7 @@ class Patient:
         #j'utilise un int pour pas que on voit les decimale de l'age,
         # qui sont nessesaire pour verifier dans la fonction set age si l'age est supérieur a 0
 
-        output += f"l'age' du patient: {int(self.calculer_age(self.Date_naiss))}\n"
+        output += f"l'age' du patient: {int(self.calculer_age(turn_str_to_date(self.Date_naiss)))}\n"
         output += "\n"
         output += f"le nombre de visite du patient: {str(self.Nb_visite)}\n"
         output += "\n"
@@ -93,7 +94,7 @@ class Patient:
         Méthode permettant de sérialiser un objet de la classe Etudiant
 
         """
-        with open(f"Fichiers_JSON/{ }", "w") as fichier:
+        with open(f"Fichiers_JSON/{self.__no_patient}", "w") as fichier:
             json.dump(self.__dict__, fichier)
     #######################################
     ###### DÉFINITIONS DES PROPRIÉTÉS #####
@@ -156,7 +157,7 @@ class Patient:
         print("calcule age apres ")
         print(p_date_naiss)
         if age > 0:
-            self.__date_naiss = p_date_naiss
+            self.__date_naiss = str(p_date_naiss)
 
 
 
@@ -187,4 +188,17 @@ class Patient:
 
 
 
+"""p = Patient()
 
+p.Nom = "jacob"
+p.Prenom = "chapman"
+
+p.NoPatient = "1234567"
+
+p.Date_naiss = turn_str_to_date("2003-09-07")
+
+
+p.Nb_visite = 3
+
+p.Sauvegarder()
+print(p)"""

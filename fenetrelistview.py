@@ -18,7 +18,7 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 
 from interface_UI import list_avance_pop_up_interface
 
-from main import ls_patients
+from main import ls_patients, turn_str_to_date
 def cacher_labels_erreur(objet):
     """
     Cacher les différents labels d'erreur
@@ -115,7 +115,7 @@ class Fenetrelistview(QtWidgets.QDialog, list_avance_pop_up_interface.Ui_Dialog)
                 self.listView_list_patient_avance.setModel(model)
 
                 for p in ls_patients:
-                    age = p.calculer_age(p.Date_naiss)
+                    age = p.calculer_age(turn_str_to_date(p.Date_naiss))
                     print("age = p.calculer_age(p.Date_naiss)")
                     print(type(age))
                     if  int(age) <= int(age_max) and int(age) >= int(age_min):
