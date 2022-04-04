@@ -130,7 +130,9 @@ class FenetrePrincipale(QtWidgets.QMainWindow, interface_principal.Ui_MainWindow
         print()
 
         nouv_patient = patient.Patient(p_commentaire=self.textEdit_commentaire.toPlainText())
+
         print("allo2")
+
         is_valide = True
         #verification pour le num
 
