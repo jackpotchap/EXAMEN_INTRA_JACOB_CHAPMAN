@@ -14,7 +14,8 @@ import json
 
 #pour calculer l'age
 import datetime
-from main import turn_str_to_date
+
+from logic import turn_str_to_date
 
 class Patient:
     """
@@ -89,13 +90,26 @@ class Patient:
     def calculer_cout_total(self, cout:float) -> float:
         return self.__nb_visite*cout
 
+
+    #CODE PROVENANT DU DOCUMENT DISTRIBUER EN CLASSE
     def Sauvegarder(self):
         """
-        Méthode permettant de sérialiser un objet de la classe Etudiant
+        Méthode permettant de sérialiser un objet de la classe Patient
 
         """
         with open(f"Fichiers_JSON/{self.__no_patient}", "w") as fichier:
             json.dump(self.__dict__, fichier)
+
+    def Ouvrir(self, p_fichier):
+        """
+            Méthode permttant de désérialiser un objet de la classe Patient
+            ::param p_fichier : Le nom du fichier qui contient l'objet sérialisé
+                """
+
+        with open(f"Fichiers_JSON/{p_fichier}" , "r") as fichier :
+            print("as been open")
+            self.__dict__ = json.load(fichier)
+            print("as been read")
     #######################################
     ###### DÉFINITIONS DES PROPRIÉTÉS #####
     #######################################
@@ -123,9 +137,11 @@ class Patient:
     def _set_nom(self, p_nom:str):
 
         # doit avoir au maximum 30 caractères alphabétiques
-
+        print("hit")
         if len(p_nom) <= 30:
+            print("len(p_nom)")
             if p_nom.isalpha():
+                print("isalpha")
                 self.__nom = p_nom
 
     Nom = property(_get_nom, _set_nom)
@@ -188,17 +204,4 @@ class Patient:
 
 
 
-"""p = Patient()
 
-p.Nom = "jacob"
-p.Prenom = "chapman"
-
-p.NoPatient = "1234567"
-
-p.Date_naiss = turn_str_to_date("2003-09-07")
-
-
-p.Nb_visite = 3
-
-p.Sauvegarder()
-print(p)"""

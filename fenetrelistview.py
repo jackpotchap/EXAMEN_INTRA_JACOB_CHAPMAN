@@ -18,7 +18,8 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 
 from interface_UI import list_avance_pop_up_interface
 
-from main import ls_patients, turn_str_to_date
+from main import ls_patients
+from logic import turn_str_to_date
 def cacher_labels_erreur(objet):
     """
     Cacher les différents labels d'erreur

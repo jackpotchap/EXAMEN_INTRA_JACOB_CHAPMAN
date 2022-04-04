@@ -17,8 +17,8 @@ import fenetrelistview
 import pythonconfirmation
 import patient
 from interface_UI import interface_principal
-from main import ls_patients, turn_str_to_date
-
+from main import ls_patients
+from logic import turn_str_to_date
 
 def refresh_text_broswer(object):
     output = ""
@@ -57,6 +57,30 @@ def cacher_labels_erreur(objet):
 
     objet.label_erreure_generic_ouvrire.setVisible(False)
 
+#comme je réutilisait le meme code 3 fois je lais mis dans une fonction
+
+def num_is_the_right_format(object, num):
+    cacher_labels_erreur(object)
+    test_patient = patient.Patient()
+
+    is_valide = True
+    # verification pour le num
+
+
+
+    try:
+        int(num)
+    except:
+        object.label_erreure_chiffreonly_num.setVisible(True)
+        is_valide = False
+
+    else:
+        test_patient.NoPatient = num
+        if test_patient.NoPatient == "":
+            is_valide = False
+            object.label_erreure_taille_num.setVisible(True)
+
+    return is_valide
 
 ########################################################
 ###### DÉFINITIONS DE LA CLASSE fenetre principale ######
@@ -109,32 +133,33 @@ class FenetrePrincipale(QtWidgets.QMainWindow, interface_principal.Ui_MainWindow
         cacher_labels_erreur(self)
         print()
 
-        nouv_patient = patient.Patient(p_commentaire=self.textEdit_commentaire.toPlainText())
+
 
         print("allo2")
 
         is_valide = True
+
         #verification pour le num
-
-        print("num")
+        print("start")
         num = self.lineEdit_num.text()
-
-        try:
-            int(num)
-        except:
-            self.label_erreure_chiffreonly_num.setVisible(True)
-            is_valide = False
-
-        else:
+        print("num = self.lineEdit_num.text()")
+        is_valide = num_is_the_right_format(self, num)
+        print("end")
+        nouv_patient = patient.Patient(p_commentaire=self.textEdit_commentaire.toPlainText())
+        if is_valide:
             nouv_patient.NoPatient = num
-            if nouv_patient.NoPatient == "":
-                is_valide = False
-                self.label_erreure_taille_num.setVisible(True)
+
 
         print("nom")
         nom = self.lineEdit_nom.text()
+        print("nom = self.lineEdit_nom.text()")
+        print(nom)
+        print(nouv_patient.Nom)
+
         nouv_patient.Nom = nom
+        print("nouv_patient.Nom = nom")
         if nouv_patient.Nom == "":
+            print("nouv_patient.Nom")
             is_valide = False
             self.label_erreure_lettreonly_nom.setVisible(True)
             self.label_erreure_troplong_nom.setVisible(True)
@@ -196,26 +221,13 @@ class FenetrePrincipale(QtWidgets.QMainWindow, interface_principal.Ui_MainWindow
     def on_pushButton_sauvegarder_clicked(self):
         #je fait le meme protocole pour vérifier si le num est valide nouv_patient = patient.Patient(p_commentaire=self.textEdit_commentaire.toPlainText())
         cacher_labels_erreur(self)
-        nouv_patient = patient.Patient()
 
-
-        is_valide = True
-        #verification pour le num
-
-
+        # verification pour le num
         num = self.lineEdit_num.text()
 
-        try:
-            int(num)
-        except:
-            self.label_erreure_chiffreonly_num.setVisible(True)
-            is_valide = False
+        is_valide = num_is_the_right_format(self, num)
 
-        else:
-            nouv_patient.NoPatient = num
-            if nouv_patient.NoPatient == "":
-                is_valide = False
-                self.label_erreure_taille_num.setVisible(True)
+
 
 
         if is_valide:
@@ -234,4 +246,33 @@ class FenetrePrincipale(QtWidgets.QMainWindow, interface_principal.Ui_MainWindow
         pop_up.show()
         pop_up.exec_()
 
+    @pyqtSlot()
+    def on_pushButton_ouvrir_clicked(self):
+        print("hi")
+        # je fait le meme protocole pour vérifier si le num est valide
+        cacher_labels_erreur(self)
+        nouv_patient = patient.Patient()
 
+        # verification pour le num
+        num = self.lineEdit_num.text()
+
+        is_valide = num_is_the_right_format(self, num)
+
+        try:
+            print(num)
+            nouv_patient.Ouvrir(num)
+        except:
+            self.label_erreure_introuvable_ouvrire.setVisible(True)
+
+            self.label_erreure_generic_ouvrire.setVisible(True)
+        else:
+
+            #verification pour ne pas ajouter deux fois le meme patient
+            is_already_there = False
+            for p in ls_patients:
+                if p.NoPatient == nouv_patient.NoPatient:
+                    is_already_there = True
+
+            if is_already_there != True:
+                ls_patients.append(nouv_patient)
+                refresh_text_broswer(self)

@@ -10,6 +10,7 @@
 #importation de la gestion du temps
 import datetime
 
+
 def turn_str_to_date(p_date: str) -> datetime.date:
     """
     transformer une chaine de caracetre en type datetime.date
@@ -30,3 +31,4 @@ def turn_str_to_date(p_date: str) -> datetime.date:
     except:
         print("desoler le format est incorrect")
         return datetime.date.today()
+
