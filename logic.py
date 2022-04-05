@@ -19,7 +19,7 @@ def turn_str_to_date(p_date: str) -> datetime.date:
     :return: la dans en type datetime.date
     """
 
-    # comme il sajit d'une function de plus je me suis selement permis de faire une gestion erreure pour le format
+    # comme il sagit d'une function de plus je me suis seulement permis de faire une gestion erreure pour le format
     try:
         date = p_date.split("-")
 

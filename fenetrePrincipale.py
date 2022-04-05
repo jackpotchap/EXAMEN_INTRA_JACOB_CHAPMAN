@@ -9,39 +9,58 @@
 
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import pyqtSlot, QDate
+
+#pour la gestion du temps
 import datetime
 
 from PyQt5.uic.properties import QtCore
 
+
+#importation des fenetres
 import fenetrelistview
 import pythonconfirmation
-import patient
 from interface_UI import interface_principal
+
+#la classe
+import patient
+
 from main import ls_patients
+
+#bibliotheque de function qui seront
 from logic import turn_str_to_date
 
 def refresh_text_broswer(object):
+    """
+    Fonction permetant de supprimer le contenue du text_broswer et de réafficher son contenue.
+    :param object:
+    :return:
+    """
     output = ""
     for p in ls_patients:
-        print(p)
+
         output += p.__str__()
         output += "\n"
     object.textBrowser_affichage_patients.setText(output)
 
 def clear_input(object):
-    print("object.textEdit_commentaire.setPlainText")
+    """
+    Vider tous les line edit.
+    :param object: la fenetre a clear les input de...
+    :return:
+    """
+
     object.lineEdit_nom.setText("")
     object.lineEdit_prenom.setText("")
     object.lineEdit_num.setText("")
     object.lineEdit_nbvisite.setText("")
-    print("object.textEdit_commentaire.setPlainText")
+
     object.textEdit_commentaire.setPlainText("")
 
     object.dateEdit_naissance_patient.setSpecialValueText("2000-01-01")
 
 def cacher_labels_erreur(objet):
     """
-    Cacher les différents labels d'erreur
+    Cacher les différents labels d'erreur.
     """
     objet.label_erreure_troplong_nom.setVisible(False)
     objet.label_erreure_lettreonly_nom.setVisible(False)
@@ -53,21 +72,32 @@ def cacher_labels_erreur(objet):
     objet.label_erreure_pasnee_date.setVisible(False)
     objet.label_erreure_chiffreonly_nbvisite.setVisible(False)
     objet.label_erreure_positif_nbvisite.setVisible(False)
-    objet.label_erreure_introuvable_ouvrire.setVisible(False)
-
     objet.label_erreure_generic_ouvrire.setVisible(False)
 
-#comme je réutilisait le meme code 3 fois je lais mis dans une fonction
+    objet.label_erreure_introuvable_sav.setVisible(False)
+    objet.label_erreure_introuvable_ouvrire.setVisible(False)
+
+
+
+#comme je réutulisais le même code 3 fois je l'ais mis dans une fonction.
 
 def num_is_the_right_format(object, num):
+    """
+    Fonction qui permet de vérifier si le numéro est de type int et a 7 caratere.
+    J'ai faite cette fonction puisque j'utilisait exactement cette logique 3 fois
+    :param object:
+    :param num: le numéraux a vérifier
+    :return: TRUE or FALSE en fonction de si le numéro est affectable.
+    """
+
+    #Je crée un patient test pour faire sure qu'il serat attribué.
+
     cacher_labels_erreur(object)
     test_patient = patient.Patient()
 
     is_valide = True
-    # verification pour le num
 
-
-
+    # Vérification pour le num si il est un int.
     try:
         int(num)
     except:
@@ -76,6 +106,8 @@ def num_is_the_right_format(object, num):
 
     else:
         test_patient.NoPatient = num
+
+        #Vérifier si il a été affecté.
         if test_patient.NoPatient == "":
             is_valide = False
             object.label_erreure_taille_num.setVisible(True)
@@ -87,8 +119,9 @@ def num_is_the_right_format(object, num):
 ########################################################
 
 class FenetrePrincipale(QtWidgets.QMainWindow, interface_principal.Ui_MainWindow):
+    #commentaire provenant de Ex_1_interfaceGraphique
     """
-    Nome de la classe : fenetrePrincipale
+    Nome de la classe : FenetrePrincipale
     Héritages :
     - QtWidgets.QMainWindow : Type d'interface créé par QtDesigner
     - interface_principal.Ui_MainWindow : Ma classe générée avec QtDesigner
@@ -97,7 +130,7 @@ class FenetrePrincipale(QtWidgets.QMainWindow, interface_principal.Ui_MainWindow
     def __init__(self, parent=None):
         """
         Constructeur de la classe
-        :param parent: QtWidgets.QMainWindow et iinterface_principal.Ui_MainWindow
+        :param parent: QtWidgets.QMainWindow et interface_principal.Ui_MainWindow
         """
         # Appeler le constructeur parent avec ma classe en paramètre...
         super(FenetrePrincipale, self).__init__(parent)
@@ -111,12 +144,17 @@ class FenetrePrincipale(QtWidgets.QMainWindow, interface_principal.Ui_MainWindow
 
 
 
-    #le bouton pour afficher la fentrelistview
+    #Le bouton pour afficher la fentrelistview.
     @pyqtSlot()
     def on_pushButton_afficherlist_clicked(self):
+        """
+        Fonction qui se déclencheras lorsque le bouton pushButton_afficherlist seras pressé.
+        :return:
+        """
 
+        #préparation de la fenêtre
         dialog_list_avancer = fenetrelistview.Fenetrelistview()
-        # Préparer la listview
+
 
         dialog_list_avancer.show()
         reply = dialog_list_avancer.exec_()
@@ -124,47 +162,41 @@ class FenetrePrincipale(QtWidgets.QMainWindow, interface_principal.Ui_MainWindow
     @pyqtSlot()
     def on_pushButton_cree_clicked(self):
         """
-        La fonction qui vas soccuper de verifier que tous les information rentrer son valid
+        La fonction qui vas s'occuper de verifier que tous les information rentré son valid
         sinon elle vas montrer un message erreure.
-        sinon elle vas cree et ajouter le patient a la list et l'afficher dans le text broswer
+        sinon elle vas crée et ajouter le patient à la list et l'afficher dans le text broswer.
         :return:
         """
 
         cacher_labels_erreur(self)
-        print()
 
-
-
-        print("allo2")
-
+        #valeur par défault qui seras vraie et si jamais un des valeur n'est pas le bon format le patient ne seras pas
+        #ajouter dans la list.
         is_valide = True
 
-        #verification pour le num
-        print("start")
-        num = self.lineEdit_num.text()
-        print("num = self.lineEdit_num.text()")
-        is_valide = num_is_the_right_format(self, num)
-        print("end")
+        #création de la classe
         nouv_patient = patient.Patient(p_commentaire=self.textEdit_commentaire.toPlainText())
+
+
+        # GESTION ERREURE POUR NOM
+        num = self.lineEdit_num.text()
+        is_valide = num_is_the_right_format(self, num)
         if is_valide:
             nouv_patient.NoPatient = num
+        else:
+            self.label_erreure_chiffreonly_num.setVisible(True)
+            self.label_erreure_taille_num.setVisible(True)
 
 
-        print("nom")
+        #GESTION ERREURE POUR NOM
         nom = self.lineEdit_nom.text()
-        print("nom = self.lineEdit_nom.text()")
-        print(nom)
-        print(nouv_patient.Nom)
-
         nouv_patient.Nom = nom
-        print("nouv_patient.Nom = nom")
         if nouv_patient.Nom == "":
-            print("nouv_patient.Nom")
             is_valide = False
             self.label_erreure_lettreonly_nom.setVisible(True)
             self.label_erreure_troplong_nom.setVisible(True)
 
-        print("prenom")
+        # GESTION ERREURE POUR PRENOM
         prenom = self.lineEdit_prenom.text()
         nouv_patient.Prenom = prenom
         if nouv_patient.Prenom == "":
@@ -172,26 +204,17 @@ class FenetrePrincipale(QtWidgets.QMainWindow, interface_principal.Ui_MainWindow
             self.label_erreure_lettreonly_prenom.setVisible(True)
             self.label_erreure_troplong_prenom.setVisible(True)
 
-        print("date_naiss")
+        # GESTION ERREURE POUR DATE DE NAISSANCE
         date_naiss = self.dateEdit_naissance_patient.date()
-        print("date_naiss.date")
-
-        #pour pouvoir fiare fonctionner lobjet date de qt et de la librarie datetime
+        #pour pouvoir faire fonctionner l'objet date de PyQt5 et de la librarie datetime
         nouv_patient.Date_naiss = turn_str_to_date(f"{date_naiss.year()}-{date_naiss.month()}-{date_naiss.day()}")
-        print("date_naiss.=")
-        print(nouv_patient.Date_naiss)
-        print(date_naiss)
-        #   1-1-1                     dasdasdasd(1,1,1)
         if nouv_patient.Date_naiss == datetime.date(1,1,1):
-            print("Date_naiss == datetime.date(0,0,0)")
             is_valide = False
             self.label_erreure_pasnee_date(True)
 
-
-        print("nb_visite")
-
+        # GESTION ERREURE POUR LE NOMBRE DE VISITES
         nb_visite = self.lineEdit_nbvisite.text()
-        print("nb_visite = self.lineEdit_nbvisite.text()")
+
         try:
             int(nb_visite)
         except:
@@ -199,37 +222,35 @@ class FenetrePrincipale(QtWidgets.QMainWindow, interface_principal.Ui_MainWindow
             is_valide = False
 
         else:
-            print("try nb_visite")
             nouv_patient.Nb_visite = int(nb_visite)
-            print("nouv_patient.Nb_visite")
             if nouv_patient.Nb_visite == -1:
                 is_valide = False
                 self.label_erreure_positif_nbvisite.setVisible(True)
 
 
-        print("allo")
+        #si tous les parramètres son valide l'ajouter à la liste patient et raffraichir le text browser.
         if is_valide == True:
 
             ls_patients.append(nouv_patient)
-            print("allo")
             clear_input(self)
-            print("clear input")
             refresh_text_broswer(self)
 
 
     @pyqtSlot()
     def on_pushButton_sauvegarder_clicked(self):
-        #je fait le meme protocole pour vérifier si le num est valide nouv_patient = patient.Patient(p_commentaire=self.textEdit_commentaire.toPlainText())
+        """
+        Fonction qui permetera de serialiser le patient correspondant aux numéros de patient correspondant
+
+        :return:
+        """
+
         cacher_labels_erreur(self)
 
         # verification pour le num
         num = self.lineEdit_num.text()
-
         is_valide = num_is_the_right_format(self, num)
 
-
-
-
+        #si le numéros est du bon format je vérifie qu'il corespond a un patient de la list
         if is_valide:
             is_valide = False
             # je tente desormais de vérifier si le numeros est dans la liste
@@ -239,16 +260,23 @@ class FenetrePrincipale(QtWidgets.QMainWindow, interface_principal.Ui_MainWindow
                     is_valide = True
 
         pop_up = pythonconfirmation.Fenetreconfirmation()
+
+        #si le patient a été trouver afficher la fenetre de confiramtion
         if is_valide:
             pop_up.label_titre_reussite.setVisible(True)
+            pop_up.show()
+            pop_up.exec_()
         else:
-            pop_up.label_erreure_savwrong.setVisible(True)
-        pop_up.show()
-        pop_up.exec_()
+            self.label_erreure_introuvable_sav.setVisible(True)
+
 
     @pyqtSlot()
     def on_pushButton_ouvrir_clicked(self):
-        print("hi")
+        """
+        Fonction qui permet de déserialiser un patient
+        :return:
+        """
+
         # je fait le meme protocole pour vérifier si le num est valide
         cacher_labels_erreur(self)
         nouv_patient = patient.Patient()
@@ -258,8 +286,9 @@ class FenetrePrincipale(QtWidgets.QMainWindow, interface_principal.Ui_MainWindow
 
         is_valide = num_is_the_right_format(self, num)
 
+        # si le numéros est du bon format et je vérifie que le fichier existe
         try:
-            print(num)
+
             nouv_patient.Ouvrir(num)
         except:
             self.label_erreure_introuvable_ouvrire.setVisible(True)
@@ -267,7 +296,7 @@ class FenetrePrincipale(QtWidgets.QMainWindow, interface_principal.Ui_MainWindow
             self.label_erreure_generic_ouvrire.setVisible(True)
         else:
 
-            #verification pour ne pas ajouter deux fois le meme patient
+            #verification pour ne pas ajouter deux fois le même patient
             is_already_there = False
             for p in ls_patients:
                 if p.NoPatient == nouv_patient.NoPatient:

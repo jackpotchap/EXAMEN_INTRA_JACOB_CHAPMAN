@@ -46,7 +46,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Age Minimum</string>
+    <string>Âge Minimum</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_titre_age_max">
@@ -64,7 +64,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Age Maximum</string>
+    <string>Âge Maximum</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_age_max">
@@ -182,7 +182,7 @@
     </font>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;* l'age doit etre supérieure a 0.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;* l'âge doit ëtre supérieure a 0.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_erreure_chiffreonly_num_age_min">
@@ -200,7 +200,7 @@
     </font>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;* l'age doit etre un nombre entier.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;* l'âge doit être un nombre entier.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_erreure_positif">
@@ -254,7 +254,7 @@
     </font>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;* l'age doit etre supérieure a 0.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;* l'âge doit etre supérieure a 0.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_erreure_chiffreonly_num_age_max">
@@ -272,7 +272,7 @@
     </font>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;* l'age doit etre un nombre entier.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;* l'âge doit etre un nombre entier.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
  </widget>

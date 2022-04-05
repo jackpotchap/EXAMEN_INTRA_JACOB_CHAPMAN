@@ -27,7 +27,7 @@ class Patient:
     #####  MÉTHODE CONSTRUCTEUR  #####
     ###################################
 
-    def __init__(self, p_no_patient : str = "", p_nom : str = "", p_prenom:str = "", p_date_naiss:datetime.date = datetime.date(1, 1, 1), p_nb_visite :  int = -1, p_commentaire : str = ""):
+    def __init__(self, p_no_patient : str = "", p_nom : str = "", p_prenom:str = "", p_date_naiss:str = "1-1-1", p_nb_visite :  int = -1, p_commentaire : str = ""):
         """
         Constructeur avec paramètres et valeurs par défaut. Définition des attributs publics d'un étudiant
         :param p_no_patient: le numéro du patient
@@ -37,7 +37,7 @@ class Patient:
         :param p_nb_visite: le nombres de visites du patient
         :param commentaire: commentaire sur le patient
         """
-        print("allo")
+
         self.__no_patient = p_no_patient
         self.__nom = p_nom
         self.__prenom= p_prenom
@@ -77,17 +77,26 @@ class Patient:
         return output
 
     def calculer_age(self, p_date_naiss: datetime.date) -> float:
-        print(p_date_naiss)
-        print(datetime.date.today())
-        nb_jour = (datetime.date.today()- p_date_naiss).days
-        print("nb_jour = (datetime.date.today()- p_date_naiss).days")
+        """
+        Méthodes permetant de calculer le nombres de jours entre deux dates et de faire un conversion en années
+        :param p_date_naiss: la date de naissance qui feras la soustrantion avec la date de aujourd'hui
+        :return: retourne le nombres années écouler entre deux dates
+        """
+
+        nb_jour = (datetime.date.today() - p_date_naiss).days
+
         #il y a 365 jour et 1 de plus a chaque 4 ans donc on divise le total de jour par 365.25
 
         nb_annee = nb_jour/365.25
-        print("nb_annee = nb_jour/365.25")
+
         return nb_annee
 
     def calculer_cout_total(self, cout:float) -> float:
+        """
+        Méthode permetant de calculer le cout total en fesant le nombres de visites * le cout
+        :param cout: le montant qui seras multiplier par le nombre de visites
+        :return: le nombres de visites par l'âge
+        """
         return self.__nb_visite*cout
 
 
@@ -107,9 +116,9 @@ class Patient:
                 """
 
         with open(f"Fichiers_JSON/{p_fichier}" , "r") as fichier :
-            print("as been open")
+
             self.__dict__ = json.load(fichier)
-            print("as been read")
+
     #######################################
     ###### DÉFINITIONS DES PROPRIÉTÉS #####
     #######################################
@@ -118,10 +127,16 @@ class Patient:
 
     #Propriété de no_patient
     def _get_no_patient(self) -> str:
+        """
+        Accesseur de l'attribut privé  __no_patient
+
+        """
         return self.__no_patient
 
     def _set_no_pattient(self, p_num : str):
-
+        """
+        Mutateur de l'attribur privé __no_patient
+        """
         #doit etre composé de sept chiffres
 
         if len(p_num) == 7:
@@ -132,16 +147,22 @@ class Patient:
     #Propriété de nom
 
     def _get_nom(self)-> str:
+        """
+                Accesseur de l'attribut privé  __nom
+
+                """
         return self.__nom
 
     def _set_nom(self, p_nom:str):
-
+        """
+                Mutateur de l'attribur privé __nom
+                """
         # doit avoir au maximum 30 caractères alphabétiques
-        print("hit")
+
         if len(p_nom) <= 30:
-            print("len(p_nom)")
+
             if p_nom.isalpha():
-                print("isalpha")
+
                 self.__nom = p_nom
 
     Nom = property(_get_nom, _set_nom)
@@ -149,10 +170,16 @@ class Patient:
     # Propriété de prenom
 
     def _get_prenom(self)-> str:
+        """
+                        Accesseur de l'attribut privé  __prenom
+
+                        """
         return self.__prenom
 
     def _set_prenom(self, p_prenom:str):
-
+        """
+                        Mutateur de l'attribur privé __prenom
+                        """
         # doit avoir au maximum 30 caractères alphabétiques
 
         if len(p_prenom) <= 30:
@@ -164,14 +191,20 @@ class Patient:
     # Propriété de date_naiss
 
     def _get_date_naiss(self) -> datetime.date:
+        """
+                        Accesseur de l'attribut privé  __date_naiss
+
+                        """
         return self.__date_naiss
 
     def _set_date_naiss(self, p_date_naiss:datetime.date):
+        """
+                        Mutateur de l'attribur privé __date_naiss
+                        """
 
-        print("calcule age avant ")
         age = self.calculer_age(p_date_naiss)
-        print("calcule age apres ")
-        print(p_date_naiss)
+
+
         if age > 0:
             self.__date_naiss = str(p_date_naiss)
 
@@ -182,10 +215,16 @@ class Patient:
     # Propriété de nb_visite
 
     def _get_nb_visite(self) -> int:
+        """
+                        Accesseur de l'attribut privé  __nb_visite
+
+                        """
         return self.__nb_visite
 
     def _set_nb_visite(self, p_nb_visite: int):
-
+        """
+                        Mutateur de l'attribur privé __nb_visite
+                        """
         # doit etre positif
         if p_nb_visite >= 0:
             self.__nb_visite = p_nb_visite
@@ -196,6 +235,9 @@ class Patient:
 
     # Propriété de couriel
     def _get_couriel(self) -> str:
+        """
+                        Accesseur de l'attribut privé  __couriel
+                        """
         return f"{self.__nom}_{self.__prenom}@CabinetMedical.ca"
 
     Couriel = property(_get_couriel, )

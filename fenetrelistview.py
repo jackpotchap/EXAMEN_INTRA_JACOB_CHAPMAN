@@ -37,6 +37,14 @@ def cacher_labels_erreur(objet):
 
 class Fenetrelistview(QtWidgets.QDialog, list_avance_pop_up_interface.Ui_Dialog):
     def __init__(self, parent=None):
+        # commentaire provenant de Ex_1_interfaceGraphique
+        """
+        Nome de la classe : Fenetrelistview
+        Héritages :
+        - QtWidgets.QMainWindow : Type d'interface créé par QtDesigner
+        - list_avance_pop_up_interface.Ui_Dialog : Ma classe générée avec QtDesigner
+        """
+
         super(Fenetrelistview, self).__init__(parent)
         self.setupUi(self)
         self.setWindowTitle("Liste des étudiant.e.s")
@@ -44,14 +52,25 @@ class Fenetrelistview(QtWidgets.QDialog, list_avance_pop_up_interface.Ui_Dialog)
 
     @pyqtSlot()
     def on_pushButton_hide_list_avance_clicked(self):
+        """
+        Pour fermer l'interface de la liste
+        :return:
+        """
         self.close()
 
     @pyqtSlot()
     def on_pushButton_age_rechercher_clicked(self):
+        """
+        Fonction pour chercher chercher tous les patient dans le domaine age max et age min,
+        multiplirera le nb_visite par le prix indiquer
+        :return:
+        """
         #je commence par proceder a une vérification de donné
         #Pour l'age min , lage max et le prix
         valide = True
 
+
+        #validation pour l'âge minimum
         age_min = self.lineEdit_age_min.text()
 
         try:
@@ -64,6 +83,7 @@ class Fenetrelistview(QtWidgets.QDialog, list_avance_pop_up_interface.Ui_Dialog)
                 self.label_erreure_taille_age_min.setVisible((True))
                 valide = False
 
+        # validation pour l'âge maximum
         age_max = self.lineEdit_age_max.text()
 
         try:
@@ -76,6 +96,7 @@ class Fenetrelistview(QtWidgets.QDialog, list_avance_pop_up_interface.Ui_Dialog)
                 self.label_erreure_taille_age_max.setVisible((True))
                 valide = False
 
+        # validation pour le prix
         prix = self.lineEdit_prix.text()
 
         try:
@@ -89,7 +110,7 @@ class Fenetrelistview(QtWidgets.QDialog, list_avance_pop_up_interface.Ui_Dialog)
                 valide = False
 
         if valide:
-            #verifier si min est belle et bien plus petit que max
+            #verifier si le minimum est belle et bien plus petit que le maximum
             if age_max < age_min:
                 valide = False
 
@@ -102,7 +123,7 @@ class Fenetrelistview(QtWidgets.QDialog, list_avance_pop_up_interface.Ui_Dialog)
                 #on peut utiliser du css pour modifier la couleur du text
                 self.listView_list_patient_avance.setStyleSheet("color: #D0312D;")
 
-                message = QStandardItem("* l'age minimum doit absolument etre")
+                message = QStandardItem("* l'âge minimum doit absolument être")
                 model.appendRow(message)
 
                 message = QStandardItem("  inférieure ou égale a l'age maximum")
@@ -110,17 +131,17 @@ class Fenetrelistview(QtWidgets.QDialog, list_avance_pop_up_interface.Ui_Dialog)
 
             else:
 
-
+                #code tirer de l'exemple vue en classe
                 model = QStandardItemModel()
                 self.listView_list_patient_avance.setStyleSheet("color: #000000;")
                 self.listView_list_patient_avance.setModel(model)
 
                 for p in ls_patients:
                     age = p.calculer_age(turn_str_to_date(p.Date_naiss))
-                    print("age = p.calculer_age(p.Date_naiss)")
-                    print(type(age))
+
+
                     if  int(age) <= int(age_max) and int(age) >= int(age_min):
-                        print("age <= age_max and age > age_min")
+
                         item = QStandardItem(f"{p.NoPatient} –– {p.Prenom} {p.Nom} –– {int(age)} ––  {p.calculer_cout_total(float(prix)): .2f} $")
                         model.appendRow(item)
 

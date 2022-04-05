@@ -15,9 +15,11 @@
 
 # Importer le module sys nécessaire à l'exécution.
 import sys
+
 # Pour la réinitialisation de la date dans le dateEdit
 from PyQt5 import QtWidgets
 import PyQt5
+
 # Importer Pour le model de la listView
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
@@ -38,26 +40,6 @@ from interface_UI import interface_principal
 #initialisation de la list de patient
 
 ls_patients = []
-
-#######################################
-###### DÉFINITIONS DES FONCTIONS ######
-#######################################
-
-
-
-
-
-
-
-
-
-
-
-
-
-########################################################
-######  DÉFINITIONS DE LA CLASSE fenetre de list  ######
-########################################################
 
 
 #################################
